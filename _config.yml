@@ -86,9 +86,9 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : "google" # false (default), "google", "google-universal", "google-gtag", "custom"
   google:
-    tracking_id          :
+    tracking_id          : "G-J88EYQCBZ7"
     anonymize_ip         : # true, false (default)
 
 
@@ -96,7 +96,7 @@ analytics:
 author:
   name             : "dong hyun"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "5년차 개발자"
+  bio              : "필요했던 것들 기록하기"
   location         : "Suwon, korea"
   email            : kdhkdk89@naver.com
   links:
