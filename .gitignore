@@ -126,3 +126,6 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.lnk
+
+dev-react-pages/node_modules/
+dev-react-pages/build/
