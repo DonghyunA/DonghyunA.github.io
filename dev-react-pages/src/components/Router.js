@@ -1,7 +1,8 @@
 import React from "react";
-import CbmCalculator from "./CbmCalculator"
+
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Main from "./Main";
+import CbmCalculator from "./pages/CbmCalculator";
 
 const AppRouter = () =>{
     return (
