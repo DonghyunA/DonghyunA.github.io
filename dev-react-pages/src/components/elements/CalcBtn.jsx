@@ -3,7 +3,7 @@ import { Button } from 'antd';
 
 function CalcBtn() {
     return (
-        <Button type="primary" block>Button</Button>
+        <Button type="primary" block>추가하기</Button>
     )
 }
 

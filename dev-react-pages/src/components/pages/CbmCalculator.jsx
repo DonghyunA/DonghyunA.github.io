@@ -30,18 +30,24 @@ function CbmCalculator() {
   return (
     <>
       <Row>
-        <CalcInput stateInfo={stateInfo}></CalcInput>
-      </Row>
-      <Row>
-        <Col span={8}>
-          <CalcBtn></CalcBtn>
+        <Col span={4}></Col>
+        <Col span={9}>
+          <Row>
+            <CalcInput stateInfo={stateInfo}></CalcInput>
+          </Row>
+          <Row>
+            <Col span={14} offset={5}>
+              <CalcBtn></CalcBtn>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={24}>
+              <Divider orientation="left">Result</Divider>
+              <CalcList></CalcList>
+            </Col>
+          </Row>
         </Col>
-      </Row>
-      <Row>
-        <Col span={8}>
-          <Divider orientation="center">Default Size</Divider>
-          <CalcList></CalcList>
-        </Col>
+        <Col span={4}></Col>
       </Row>
     </>
   );
