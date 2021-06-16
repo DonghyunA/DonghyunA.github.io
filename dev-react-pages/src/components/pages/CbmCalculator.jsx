@@ -9,7 +9,7 @@ function CbmCalculator() {
   const [length, setLength] = useState("");
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
-  const [unit, setUnit] = useState("1000000");
+  const [unit, setUnit] = useState("1000000000");
   const [count, setCount] = useState("");
   const [cbmValue, setCbmValue] = useState("");
   const stateInfo = {

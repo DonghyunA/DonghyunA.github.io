@@ -46,7 +46,7 @@ function CalcInput(props) {
       <div className="site-card-border-less-wrapper">
         <Card title="CBM 계산기" bordered={false} style={{ width: 900 }}>
           <Row>
-            <Radio.Group name="size" onChange={onChange} defaultValue="1000000">
+            <Radio.Group name="size" onChange={onChange} defaultValue="1000000000">
               <Radio.Button value="1000000000">mm</Radio.Button>
               <Radio.Button value="1000000">cm</Radio.Button>
               <Radio.Button value="1">m</Radio.Button>
@@ -94,13 +94,13 @@ function CalcInput(props) {
             </Col>
             <Col span={16}>
               <Row>
-                <Col span={6}>
+                <Col span={3}>
                   <div style={{ fontSize: myFontSize, textAlign: "left" }}>
-                    CBM(m<sup>3</sup>)
+                    CBM
                   </div>
                 </Col>
                 <Col flex="auto">
-                  <div style={{ fontSize: myFontSize }}>: {cbmValue}</div>
+                  <div style={{ fontSize: myFontSize }}>: {cbmValue} m<sup>3</sup></div>
                 </Col>
               </Row>
               <Row>
@@ -109,32 +109,32 @@ function CalcInput(props) {
                 </Col>
               </Row>
               <Row>
-                <Col span={6}>
-                  <div style={{ fontSize: myFontSize, textAlign: "left" }}>20FT(개)</div>
+                <Col span={3}>
+                  <div style={{ fontSize: myFontSize, textAlign: "left" }}>20FT</div>
                 </Col>
                 <Col flex="auto">
                   <div style={{ fontSize: myFontSize }}>
-                    : {Math.round(27 / cbmValue)}
+                    : {Math.round(27 / cbmValue)} 개
                   </div>
                 </Col>
               </Row>
               <Row>
-                <Col span={6}>
-                  <div style={{ fontSize: myFontSize, textAlign: "left" }}>40FT(개)</div>
+                <Col span={3}>
+                  <div style={{ fontSize: myFontSize, textAlign: "left" }}>40FT</div>
                 </Col>
                 <Col flex="auto">
                   <div style={{ fontSize: myFontSize }}>
-                    : {Math.round(56 / cbmValue)}
+                    : {Math.round(56 / cbmValue)} 개
                   </div>
                 </Col>
               </Row>
               <Row>
-                <Col span={6}>
-                  <div style={{ fontSize: myFontSize, textAlign: "left" }}>40HC(개)</div>
+                <Col span={3}>
+                  <div style={{ fontSize: myFontSize, textAlign: "left" }}>40HC</div>
                 </Col>
                 <Col flex="auto">
                   <div style={{ fontSize: myFontSize }}>
-                    : {Math.round(68 / cbmValue)}
+                    : {Math.round(68 / cbmValue)} 개
                   </div>
                 </Col>
               </Row>
