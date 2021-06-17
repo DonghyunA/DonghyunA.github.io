@@ -5,6 +5,7 @@ import CalcList from "../elements/CalcList";
 import "antd/dist/antd.css";
 import { Divider, Row, Col } from "antd";
 function CbmCalculator() {
+  const [itemName, setItemName] = useState("");
   const [key,setKey] = useState(1);
   const [length, setLength] = useState("");
   const [width, setWidth] = useState("");
@@ -14,6 +15,8 @@ function CbmCalculator() {
   const [cbmValue, setCbmValue] = useState("");
   const [items, setItems] = useState([]);
   const stateInfo = {
+    itemName,
+    setItemName,
     length,
     setLength,
     width,
@@ -28,30 +31,61 @@ function CbmCalculator() {
   useEffect(() => {
     setCbmValue((length * width * height) / unit);
   });
+  const getUnitText=(unit)=>{
+    var rtn = ''
+    console.log(unit)
+    switch(unit){
+      case '1000000000':
+        rtn = 'mm';
+        break;
+      case '1000000':
+        rtn = 'cm';
+        break;
+      case '1':
+        rtn = 'm';
+        break;
+      default:
+        rtn = 'mm';
+        break;
+    }
+    return rtn
+  }
+  const getItemName = ()=>{
+    if(itemName){
+      return itemName;
+    }
+    else{
+      return "item" + key
+    }
+  }
+  const onDeleteBtn= (del_item)=>{
+    setItems(items.filter((item)=> item.key !==del_item.key))
+  }
   const onClickedAddBtn = () =>{
     const item = {
       key:key,
+      itemName:getItemName(),
       itemLength:length,
       itemWidth:width,
       itemHeight:height,
-      itemUnit:unit,
+      itemUnit:getUnitText(unit),
       itemCbmValue:cbmValue,
       itemContainerValue1:Math.round(27 / cbmValue),
       itemContainerValue2:Math.round(56 / cbmValue),
-      itemContainerValue3:Math.round(68 / cbmValue)
+      itemContainerValue3:Math.round(68 / cbmValue),
     }
     setItems(items.concat(item))
     setKey(key+1)
-    setLength(0)
-    setWidth(0)
-    setHeight(0)
-    console.log(item)
+    setLength('')
+    setWidth('')
+    setHeight('')
+    setItemName('')
   }
   return (
     <>
       <Row>
         <Col span={4}></Col>
-        <Col span={9}>
+        <Col span={11}>
           <Row>
             <CalcInput stateInfo={stateInfo}></CalcInput>
           </Row>
@@ -63,7 +97,7 @@ function CbmCalculator() {
           <Row>
             <Col span={24}>
               <Divider orientation="left">Result</Divider>
-              <CalcList item={items}></CalcList>
+              <CalcList item={items} onDeleteBtn={onDeleteBtn}></CalcList>
             </Col>
           </Row>
         </Col>
