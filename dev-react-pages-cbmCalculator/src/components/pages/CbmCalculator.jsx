@@ -92,7 +92,7 @@ function CbmCalculator() {
         <Col span={11}>
           <Row>
           {/* <div style={{background:"#999999"}}></div> */}
-            <ContentAd></ContentAd>
+            {/* <ContentAd></ContentAd> */}
           </Row>
           <Row>
             <CalcInput stateInfo={stateInfo}></CalcInput>
