@@ -86,10 +86,12 @@ function CbmCalculator() {
     <>
       <Row>
         <Col span={4}>
+          {/* <div style={{background:"#999999"}}></div> */}
           <SideAd></SideAd>
         </Col>
         <Col span={11}>
           <Row>
+          {/* <div style={{background:"#999999"}}></div> */}
             <ContentAd></ContentAd>
           </Row>
           <Row>
@@ -108,6 +110,7 @@ function CbmCalculator() {
           </Row>
         </Col>
         <Col span={4}>
+        {/* <div style={{background:"#999999"}}></div> */}
           <SideAd></SideAd>
         </Col>
       </Row>

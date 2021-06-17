@@ -19,7 +19,6 @@ const SideAd = () => {
     //   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     // </>
     <AdSense.Google
-    style={{ display: "block", textAlign: "center" }}
         style={{ display: "block" }}
         client="ca-pub-5708410027420247"
         slot="4542608339"
