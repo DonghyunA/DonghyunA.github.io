@@ -127,5 +127,5 @@ $RECYCLE.BIN/
 *.msp
 *.lnk
 
-dev-react-pages/node_modules/
-dev-react-pages/build/
+dev-react-pages-cbmCalculator/node_modules/
+dev-react-pages-cbmCalculator/build/

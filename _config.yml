@@ -174,7 +174,7 @@ exclude:
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
   - node_modules
-  - dev-react-pages
+  - dev-react-pages-cbmCalculator
 keep_files:
   - .git
   - .svn

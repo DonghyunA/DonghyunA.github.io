@@ -1,6 +1,6 @@
 {
-  "homepage": "/react-pages/",
-  "name": "dev-react-pages",
+  "homepage": "/cbmcalculator/",
+  "name": "dev-react-pages-cbmcalculator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,8 +20,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "purge": "rmdir /s /q ..\\react-pages\\static && xcopy .\\build\\* ..\\react-pages\\ /E /y",
-    "frontmatter": "echo '---\ntitle: React Tools\nlayout: null\n---\n' | cat - ../react-pages/index.html > temp && mv temp ../react-pages/index.html",
+    "purge": "rmdir /s /q ..\\cbmcalculator\\static && xcopy .\\build\\* ..\\cbmcalculator\\ /E /y",
+    "frontmatter": "echo '---\ntitle: React Tools\nlayout: null\n---\n' | cat - ../cbmcalculator/index.html > temp && mv temp ../cbmcalculator/index.html",
     "deploy": "npm run purge && npm run frontmatter"
   },
   "eslintConfig": {
