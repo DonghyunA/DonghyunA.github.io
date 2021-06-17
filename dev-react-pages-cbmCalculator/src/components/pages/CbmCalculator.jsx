@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import CalcBtn from "../elements/CalcBtn";
 import CalcInput from "../elements/CalcInput";
 import CalcList from "../elements/CalcList";
+import SideAd from "./SideAd";
+import ContentAd from "./contentAd";
 import "antd/dist/antd.css";
 import { Divider, Row, Col } from "antd";
 function CbmCalculator() {
