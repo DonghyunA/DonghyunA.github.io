@@ -9,7 +9,7 @@ const SideAd = () => {
       ></script>
       <ins
         class="adsbygoogle"
-        style="display:block"
+        style={{display:"block"}}
         data-ad-client="ca-pub-5708410027420247"
         data-ad-slot="4542608339"
         data-ad-format="auto"
