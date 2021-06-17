@@ -85,7 +85,7 @@ function CbmCalculator() {
   }
   return (
     <>
-    <ContentAd></ContentAd>
+    <SideAd></SideAd>
       <Row>
         <Col span={4}>
           <SideAd></SideAd>
@@ -107,10 +107,10 @@ function CbmCalculator() {
           </Row>
         </Col>
         <Col span={4}>
-        <SideAd></SideAd>
+        <ContentAd></ContentAd>
         </Col>
       </Row>
-      <ContentAd></ContentAd>
+      <SideAd></SideAd>
     </>
   );
 }
