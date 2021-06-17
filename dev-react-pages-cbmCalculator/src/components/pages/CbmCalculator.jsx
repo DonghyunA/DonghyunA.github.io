@@ -83,8 +83,11 @@ function CbmCalculator() {
   }
   return (
     <>
+    <ContentAd></ContentAd>
       <Row>
-        <Col span={4}></Col>
+        <Col span={4}>
+          <SideAd></SideAd>
+        </Col>
         <Col span={11}>
           <Row>
             <CalcInput stateInfo={stateInfo}></CalcInput>
@@ -101,8 +104,11 @@ function CbmCalculator() {
             </Col>
           </Row>
         </Col>
-        <Col span={4}></Col>
+        <Col span={4}>
+        <SideAd></SideAd>
+        </Col>
       </Row>
+      <ContentAd></ContentAd>
     </>
   );
 }
