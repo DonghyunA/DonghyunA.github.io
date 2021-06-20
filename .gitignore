@@ -129,3 +129,6 @@ $RECYCLE.BIN/
 
 dev-react-pages-cbmCalculator/node_modules/
 dev-react-pages-cbmCalculator/build/
+# dev-react-pages-psychology
+dev-react-pages-psychology/node_modules/
+dev-react-pages-psychology/build/
