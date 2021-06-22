@@ -1,13 +1,29 @@
 import React from "react";
 import { Layout, Menu } from "antd";
+import AppRouter from "../Router";
 import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-
-const MainPage = () => {
+import firebase from "firebase";
+import { MainProps } from "../interfaces/MainProps";
+import { authService } from "../fbase";
+import { useHistory } from "react-router-dom";
+const MainPage: React.FC<MainProps> = (props) => {
   const { Header, Content, Footer, Sider } = Layout;
+  const history = useHistory();
+  const onLogOutClick = () => {
+    authService.signOut();
+    history.push("/");
+  };
+  const onSignIn = () => {
+    history.push("/login");
+  }
+  const onSignUp = () => {
+    history.push("/signup");
+  }
+
   return (
     <Layout>
       <Sider
@@ -20,10 +36,14 @@ const MainPage = () => {
           console.log(collapsed, type);
         }}
       >
-        <div className="logo" style={{
-            height: 32,  margin: 16,
-            background: "rgba(255, 255, 255, 0.2)"
-            }} />
+        <div
+          className="logo"
+          style={{
+            height: 32,
+            margin: 16,
+            background: "rgba(255, 255, 255, 0.2)",
+          }}
+        />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
           <Menu.Item key="1" icon={<UserOutlined />}>
             nav 1
@@ -35,19 +55,24 @@ const MainPage = () => {
             nav 3
           </Menu.Item>
           <Menu.Item key="4" icon={<UserOutlined />}>
+            {props.isLoggedIn ? (
+              <a onClick={() => onLogOutClick}>로그아웃</a>
+            ) : (
+              <div>
+                <a onClick={() => onSignIn()}>로그인</a>
+                <a onClick={() => onSignUp()}>회원가입</a>
+              </div>
+            )}
             로그인
           </Menu.Item>
         </Menu>
       </Sider>
       <Layout>
-        <Header
-          style={{ padding: 0 , background: "#fff" }}
-        />
+        <Header style={{ padding: 0, background: "#fff" }} />
         <Content style={{ margin: "24px 16px 0" }}>
-          <div
-            style={{ padding: 24, minHeight: 360, background: "#fff" }}
-          >
+          <div style={{ padding: 24, minHeight: 360, background: "#fff" }}>
             content
+            <AppRouter></AppRouter>
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>

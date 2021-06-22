@@ -25,7 +25,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "purge": "rmdir /s /q ..\\psychologicalTest\\static && xcopy .\\build\\* ..\\psychologicalTest\\ /E /y",
+    "frontmatter": "echo '---\ntitle: React Tools\nlayout: null\n---\n' | cat - ../psychologicalTest/index.html > temp && mv temp ../psychologicalTest/index.html",
+    "deploy": "npm run purge && npm run frontmatter"
   },
   "eslintConfig": {
     "extends": [

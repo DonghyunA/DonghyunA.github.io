@@ -1,18 +1,19 @@
 import React from "react";
 import MainPage from "./pages/MainPage";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import AuthForm from "./pages/AuthForm";
+import SignUp from "./pages/SignUp";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const AppRouter = () => {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/test">
-        </Route>
-        <Route exact path="/">
-            <MainPage></MainPage>
-        </Route>
-      </Switch>
-    </Router>
+    <Switch>
+      <Route exact path="/login">
+        <AuthForm></AuthForm>
+      </Route>
+      <Route exact path="/signup">
+        <AuthForm></AuthForm>
+      </Route>
+    </Switch>
   );
 };
 export default AppRouter;

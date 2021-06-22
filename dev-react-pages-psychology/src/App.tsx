@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TestPage from "./pages/TestPage";
 import AppRouter from "./Router";
+import MainPage from "./pages/MainPage";
 import "antd/dist/antd.css";
+import { authService } from "./fbase";
+import firebase from "firebase";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   const TestProps = {
@@ -62,21 +66,61 @@ function App() {
             answerVal: ["a", "b"],
           },
           {
-            answerStr: "문자열이 많은 버튼은 어떻게 표시될까요 알아맞춰보세요 딩동댕!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+            answerStr:
+              "문자열이 많은 버튼은 어떻게 표시될까요 알아맞춰보세요 딩동댕!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
             answerVal: ["a", "b"],
           },
         ],
       },
     ],
   };
-  const TestPropsa={
-    b:"11",
-  }
+  const [init, setInit] = useState(false);
+  const [userObj, setUserObj] = useState<firebase.User | null>(null);
+  useEffect(() => {
+    authService.onAuthStateChanged((user) => {
+      if (user) {
+        setUserObj({
+          ...user,
+          displayName: user.email,
+          uid: user.uid,
+          updateProfile: (args) => user.updateProfile(args),
+        });
+      } else {
+        setUserObj(null);
+      }
+      setInit(true);
+    });
+  }, []);
+  const refreshUser = () => {
+    const user = authService.currentUser;
+    if (user) {
+      setUserObj({
+        ...user,
+        displayName: user.displayName,
+        uid: user.uid,
+        updateProfile: (args) => user.updateProfile(args),
+      });
+    } else {
+      setUserObj(null);
+    }
+  };
   return (
-    <div className="App">
-      <AppRouter></AppRouter>
-      <TestPage {...TestProps}></TestPage>
-    </div>
+    <>
+      {init ? (
+        <div className="App">
+          <Router>
+            <MainPage
+              refreshUser={refreshUser}
+              isLoggedIn={Boolean(userObj)}
+              userObj={userObj}
+            ></MainPage>
+            <TestPage {...TestProps}></TestPage>
+          </Router>
+        </div>
+      ) : (
+        "Initializing..."
+      )}
+    </>
   );
 }
 

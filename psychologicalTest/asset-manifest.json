@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/psychologicalTest/static/js/main.db4452a1.chunk.js",
+    "main.js.map": "/psychologicalTest/static/js/main.db4452a1.chunk.js.map",
+    "runtime-main.js": "/psychologicalTest/static/js/runtime-main.660921aa.js",
+    "runtime-main.js.map": "/psychologicalTest/static/js/runtime-main.660921aa.js.map",
+    "static/css/2.6c8fd51c.chunk.css": "/psychologicalTest/static/css/2.6c8fd51c.chunk.css",
+    "static/js/2.22856a94.chunk.js": "/psychologicalTest/static/js/2.22856a94.chunk.js",
+    "static/js/2.22856a94.chunk.js.map": "/psychologicalTest/static/js/2.22856a94.chunk.js.map",
+    "index.html": "/psychologicalTest/index.html",
+    "static/css/2.6c8fd51c.chunk.css.map": "/psychologicalTest/static/css/2.6c8fd51c.chunk.css.map",
+    "static/js/2.22856a94.chunk.js.LICENSE.txt": "/psychologicalTest/static/js/2.22856a94.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.660921aa.js",
+    "static/css/2.6c8fd51c.chunk.css",
+    "static/js/2.22856a94.chunk.js",
+    "static/js/main.db4452a1.chunk.js"
+  ]
+}
