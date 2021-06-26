@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { authService } from "../fbase";
 
 const AuthForm = () => {
@@ -6,6 +7,9 @@ const AuthForm = () => {
   const [password, setPassword] = useState("");
   const [newAccount, setNewAccount] = useState(true);
   const [error, setError] = useState("");
+  
+  const history = useHistory();
+
   const onChange = (event: { target: { name: any; value: any; }; }) => {
     const {
       target: { name, value },
@@ -29,6 +33,7 @@ const AuthForm = () => {
         data = await authService.signInWithEmailAndPassword(email, password);
       }
       console.log(data);
+      history.push("/");
     } catch (error) {
       setError(error.message);
     }

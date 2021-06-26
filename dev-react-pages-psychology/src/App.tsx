@@ -114,7 +114,7 @@ function App() {
               isLoggedIn={Boolean(userObj)}
               userObj={userObj}
             ></MainPage>
-            <TestPage {...TestProps}></TestPage>
+            {/* <TestPage {...TestProps}></TestPage> */}
           </Router>
         </div>
       ) : (

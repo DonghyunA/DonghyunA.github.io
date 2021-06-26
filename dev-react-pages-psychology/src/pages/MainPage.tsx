@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu } from "antd";
+import {Layout, Menu } from "antd";
 import AppRouter from "../Router";
 import {
   UploadOutlined,
@@ -14,6 +14,9 @@ import { useHistory } from "react-router-dom";
 const MainPage: React.FC<MainProps> = (props) => {
   const { Header, Content, Footer, Sider } = Layout;
   const history = useHistory();
+  const onMainContentClick = () => {
+    history.push("/")
+  }
   const onLogOutClick = () => {
     authService.signOut();
     history.push("/");
@@ -46,8 +49,8 @@ const MainPage: React.FC<MainProps> = (props) => {
           }}
         />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-          <Menu.Item key="1" icon={<UserOutlined />}>
-            nav 1
+          <Menu.Item key="1" icon={<UserOutlined />} onClick={() => onMainContentClick()}>
+            메인화면
           </Menu.Item>
           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
             nav 2
@@ -66,13 +69,13 @@ const MainPage: React.FC<MainProps> = (props) => {
       </Sider>
       <Layout>
         <Header style={{ padding: 0, background: "#fff" }} />
-        <Content style={{ margin: "24px 16px 0" }}>
+        <Content style={{ margin: "12px 8px 0" }}>
           <div style={{ padding: 24, minHeight: 360, background: "#fff" }}>
             <AppRouter></AppRouter>
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2018 Created by Ant UED
+          11
         </Footer>
       </Layout>
     </Layout>
