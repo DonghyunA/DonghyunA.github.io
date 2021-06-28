@@ -4,15 +4,19 @@ import { PlusOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 
 const MainContents = () => {
-    const history = useHistory();
-    const onRegisterBtnClick = () => {
-      history.push("/register");
-    };
-  
+  const history = useHistory();
+  const onRegisterBtnClick = () => {
+    history.push("/register");
+  };
+
   return (
     <Row justify="center" align="middle">
       <Col>
-        <Button type="primary" icon={<PlusOutlined />} onClick={onRegisterBtnClick}>
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          onClick={onRegisterBtnClick}
+        >
           나만의 테스트 등록
         </Button>
         <Button type="primary" icon={<PlusOutlined />}>

@@ -7,10 +7,10 @@ const AuthForm = () => {
   const [password, setPassword] = useState("");
   const [newAccount, setNewAccount] = useState(true);
   const [error, setError] = useState("");
-  
+
   const history = useHistory();
 
-  const onChange = (event: { target: { name: any; value: any; }; }) => {
+  const onChange = (event: { target: { name: any; value: any } }) => {
     const {
       target: { name, value },
     } = event;
@@ -20,7 +20,7 @@ const AuthForm = () => {
       setPassword(value);
     }
   };
-  const onSubmit = async (event: { preventDefault: () => void; }) => {
+  const onSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     try {
       let data;

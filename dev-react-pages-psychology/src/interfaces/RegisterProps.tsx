@@ -1,4 +1,4 @@
 export type RegisterProps = {
-    file:string,
-    previewURL:string
-  };
+  file: string;
+  previewURL: string;
+};

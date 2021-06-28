@@ -1,5 +1,5 @@
 import React from "react";
-import {Layout, Menu } from "antd";
+import { Layout, Menu } from "antd";
 import AppRouter from "../Router";
 import {
   UploadOutlined,
@@ -15,18 +15,18 @@ const MainPage: React.FC<MainProps> = (props) => {
   const { Header, Content, Footer, Sider } = Layout;
   const history = useHistory();
   const onMainContentClick = () => {
-    history.push("/")
-  }
+    history.push("/");
+  };
   const onLogOutClick = () => {
     authService.signOut();
     history.push("/");
   };
   const onSignIn = () => {
     history.push("/login");
-  }
+  };
   const onSignUp = () => {
     history.push("/signup");
-  }
+  };
 
   return (
     <Layout>
@@ -49,7 +49,11 @@ const MainPage: React.FC<MainProps> = (props) => {
           }}
         />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-          <Menu.Item key="1" icon={<UserOutlined />} onClick={() => onMainContentClick()}>
+          <Menu.Item
+            key="1"
+            icon={<UserOutlined />}
+            onClick={() => onMainContentClick()}
+          >
             메인화면
           </Menu.Item>
           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
@@ -62,7 +66,7 @@ const MainPage: React.FC<MainProps> = (props) => {
             {props.isLoggedIn ? (
               <a onClick={() => onLogOutClick()}>로그아웃</a>
             ) : (
-                <a onClick={() => onSignIn()}>로그인/회원가입</a>
+              <a onClick={() => onSignIn()}>로그인/회원가입</a>
             )}
           </Menu.Item>
         </Menu>
@@ -74,9 +78,7 @@ const MainPage: React.FC<MainProps> = (props) => {
             <AppRouter></AppRouter>
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          11
-        </Footer>
+        <Footer style={{ textAlign: "center" }}>11</Footer>
       </Layout>
     </Layout>
   );

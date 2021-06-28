@@ -108,7 +108,7 @@ function App() {
     <>
       {init ? (
         <div className="App">
-          <Router>
+          <Router basename="psychologicalTest">
             <MainPage
               refreshUser={refreshUser}
               isLoggedIn={Boolean(userObj)}

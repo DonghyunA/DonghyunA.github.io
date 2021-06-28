@@ -12,20 +12,20 @@ const TestPage: React.FC<TestProps> = (props) => {
 
   const selectBtn = () => {
     const nextStep = step + 1;
-    if(nextStep >=props.suiteArr.length){
+    if (nextStep >= props.suiteArr.length) {
       // 결과 페이지로 이동
-      console.log("마지막 페이지로 이동시켜줘..")
+      console.log("마지막 페이지로 이동시켜줘..");
+    } else {
+      setStep(step + 1);
     }
-    else{
-      setStep(step+1)
-    }
-    
-    
   };
   return (
     <>
       <Row justify="center" align="middle">
-        <Progress percent={step/props.suiteArr.length*100} status="active" />
+        <Progress
+          percent={(step / props.suiteArr.length) * 100}
+          status="active"
+        />
       </Row>
 
       <Row justify="center" align="middle">
@@ -38,9 +38,7 @@ const TestPage: React.FC<TestProps> = (props) => {
         </Col>
       </Row>
       <Row justify="center" align="middle">
-        <Col>
-
-        </Col>
+        <Col></Col>
       </Row>
       {props.suiteArr[step].answerArr.map((element, index) => (
         <Row

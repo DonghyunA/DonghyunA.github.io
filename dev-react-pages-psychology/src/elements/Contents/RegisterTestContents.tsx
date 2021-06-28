@@ -1,8 +1,24 @@
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import RegisterStep from "../RegisterElements/RegisterStep"
-
+import RegisterStep from "../RegisterElements/RegisterStep";
+import { Form } from "antd";
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 4 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 20 },
+  },
+};
+const formItemLayoutWithOutLabel = {
+  wrapperCol: {
+    xs: { span: 24, offset: 0 },
+    sm: { span: 20, offset: 4 },
+  },
+};
 const RegisterTestContents = () => {
   const history = useHistory();
   const [testTitle, setTestTitle] = useState();
@@ -24,6 +40,9 @@ const RegisterTestContents = () => {
     //     setCbmValue(length*width*height);
     // }
   };
+  const onFinish = (values: any) => {
+    console.log("Received values of form:", values);
+  };
   const functionSet = {
     testTitle,
     setTestTitle,
@@ -31,11 +50,18 @@ const RegisterTestContents = () => {
     setQuestion,
     answerArr,
     setAnswerArr,
-    onChange
-  }
+    onChange,
+  };
   return (
     <>
-    <RegisterStep functionSet={functionSet}></RegisterStep>
+      <Form
+        style={{ marginTop: 20 }}
+        name="dynamic_form_item"
+        {...formItemLayoutWithOutLabel}
+        onFinish={onFinish}
+      >
+        <RegisterStep functionSet={functionSet}></RegisterStep>
+      </Form>
     </>
   );
 };

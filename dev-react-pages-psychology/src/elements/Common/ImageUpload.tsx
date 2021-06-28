@@ -1,21 +1,21 @@
-import { Upload, message } from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import React from 'react';
+import { Upload, message } from "antd";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import React from "react";
 
-function getBase64(img:any, callback:any) {
+function getBase64(img: any, callback: any) {
   const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
+  reader.addEventListener("load", () => callback(reader.result));
   reader.readAsDataURL(img);
 }
 
-function beforeUpload(file:any) {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+function beforeUpload(file: any) {
+  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
+    message.error("You can only upload JPG/PNG file!");
   }
   const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
+    message.error("Image must smaller than 2MB!");
   }
   return isJpgOrPng && isLt2M;
 }
@@ -26,21 +26,21 @@ function beforeUpload(file:any) {
 class Avatar extends React.Component {
   state = {
     loading: false,
-    imageUrl : ''
+    imageUrl: "",
   };
 
-  handleChange = (info:any) => {
-    if (info.file.status === 'uploading') {
+  handleChange = (info: any) => {
+    if (info.file.status === "uploading") {
       this.setState({ loading: true });
       return;
     }
-    if (info.file.status === 'done') {
+    if (info.file.status === "done") {
       // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (imageUrl:any) =>
+      getBase64(info.file.originFileObj, (imageUrl: any) =>
         this.setState({
           imageUrl,
           loading: false,
-        }),
+        })
       );
     }
   };
@@ -59,11 +59,14 @@ class Avatar extends React.Component {
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        
         beforeUpload={beforeUpload}
         onChange={this.handleChange}
       >
-        {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+        {imageUrl ? (
+          <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
+        ) : (
+          uploadButton
+        )}
       </Upload>
     );
   }
