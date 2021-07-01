@@ -1,6 +1,7 @@
 import React from "react";
 import { Steps, Divider, Button } from "antd";
 import RegisterFirstStep from "./RegisterFirstStep";
+import RegisterSecStep from "./RegisterSecStep";
 
 const { Step } = Steps;
 
@@ -10,7 +11,7 @@ const RegisterStep = (props: any) => {
       content: <RegisterFirstStep functionSet={props}></RegisterFirstStep>,
     },
     {
-      content: "Second-content",
+      content: <RegisterSecStep></RegisterSecStep>,
     },
     {
       content: "Last-content",

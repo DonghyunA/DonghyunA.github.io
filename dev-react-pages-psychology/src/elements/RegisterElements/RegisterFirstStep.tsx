@@ -4,7 +4,25 @@ import React, { useEffect, useState } from "react";
 import { RegisterProps } from "../../interfaces/RegisterProps";
 import DynamicInput from "../Common/DynamicInput";
 const FormItem = Form.Item;
-
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 4 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 20 },
+  },
+};
+const formItemLayoutWithOutLabel = {
+  wrapperCol: {
+    xs: { span: 24, offset: 0 },
+    sm: { span: 20, offset: 4 },
+  },
+};
+const onFinish = (values: any) => {
+  console.log("Received values of form:", values);
+};
 const RegisterFirstStep = (props: any) => {
   const {
     testTitle,
@@ -58,6 +76,12 @@ const RegisterFirstStep = (props: any) => {
             onChange={handleFileOnChange}>
         </Input> */}
       {/* {showPreview()} */}
+      <Form
+        style={{ marginTop: 20 }}
+        name="dynamic_form_item"
+        {...formItemLayoutWithOutLabel}
+        onFinish={onFinish}
+      >
       <Card title="나만의 테스트 등록" bordered={false}>
         <Row justify="center" align="middle">
           <Col>
@@ -89,14 +113,15 @@ const RegisterFirstStep = (props: any) => {
             <FormItem label="결과">
               <DynamicInput></DynamicInput>
             </FormItem>
-            <Form.Item>
+
               <Button type="primary" htmlType="submit">
                 Submit
               </Button>
-            </Form.Item>
+
           </Col>
         </Row>
       </Card>
+      </Form>
     </>
   );
 };

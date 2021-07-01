@@ -34,7 +34,6 @@ const DynamicInput = () => {
     >
       {(fields, { add, remove }, { errors }) => (
         <>
-          {console.log(fields)}
           {fields.map((field, index) => (
             <Form.Item
               {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
