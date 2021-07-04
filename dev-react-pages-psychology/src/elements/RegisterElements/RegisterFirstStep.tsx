@@ -2,7 +2,8 @@ import { Card, Col, Image, Input, Row, Form, Button } from "antd";
 import Avatar from "../Common/ImageUpload";
 import React, { useEffect, useState } from "react";
 import { RegisterProps } from "../../interfaces/RegisterProps";
-import DynamicInput from "../Common/DynamicInput";
+import DynamicOneInput from "../Common/DynamicInput";
+import {suiteInfo} from "../../interfaces/TestProps"
 const FormItem = Form.Item;
 const formItemLayout = {
   labelCol: {
@@ -20,9 +21,7 @@ const formItemLayoutWithOutLabel = {
     sm: { span: 20, offset: 4 },
   },
 };
-const onFinish = (values: any) => {
-  console.log("Received values of form:", values);
-};
+
 const RegisterFirstStep = (props: any) => {
   const {
     testTitle,
@@ -32,7 +31,9 @@ const RegisterFirstStep = (props: any) => {
     answerArr,
     setAnswerArr,
     onChange,
-  } = props;
+    suite,
+    setSuite,
+  } = props.functionSet;
   let profile_preview = null;
   const [imgInfo, setImgInfo] = useState<RegisterProps>({
     file: "",
@@ -48,6 +49,11 @@ const RegisterFirstStep = (props: any) => {
         ></Image>
       );
     }
+  };
+  const onFinish = (values: suiteInfo) => {
+    console.log(values);
+    setSuite({suiteInfo:values, suiteArr:suite.suiteArr })
+    console.log(suite);
   };
   // useEffect(() => {
   //     console.log(imgInfo)
@@ -82,45 +88,44 @@ const RegisterFirstStep = (props: any) => {
         {...formItemLayoutWithOutLabel}
         onFinish={onFinish}
       >
-      <Card title="나만의 테스트 등록" bordered={false}>
-        <Row justify="center" align="middle">
-          <Col>
-            <FormItem label="메인에 노출될 사진 등록">
-              <Row justify="center" align="middle">
-                <Col>
-                  <Avatar></Avatar>
-                </Col>
-              </Row>
-            </FormItem>
-            <FormItem label="테스트 명" name="title">
-              <Input
-                type="text"
-                required
-                value={testTitle}
-                onChange={onChange}
-                className="title"
-              />
-            </FormItem>
-            <FormItem label="질문" name="question">
-              <Input
-                type="text"
-                required
-                value={question}
-                onChange={onChange}
-                className="question"
-              />
-            </FormItem>
-            <FormItem label="결과">
-              <DynamicInput></DynamicInput>
-            </FormItem>
+        <Card title="나만의 테스트 등록" bordered={false}>
+          <Row justify="center" align="middle">
+            <Col>
+              <FormItem label="메인에 노출될 사진 등록" name="image">
+                <Row justify="center" align="middle">
+                  <Col>
+                    <Avatar></Avatar>
+                  </Col>
+                </Row>
+              </FormItem>
+              <FormItem label="테스트 명" name="title">
+                <Input
+                  type="text"
+                  required
+                  value={testTitle}
+                  onChange={onChange}
+                  className="title"
+                />
+              </FormItem>
+              <FormItem label="질문" name="question">
+                <Input
+                  type="text"
+                  required
+                  value={question}
+                  onChange={onChange}
+                  className="question"
+                />
+              </FormItem>
+              <FormItem label="결과">
+                <DynamicOneInput></DynamicOneInput>
+              </FormItem>
 
               <Button type="primary" htmlType="submit">
                 Submit
               </Button>
-
-          </Col>
-        </Row>
-      </Card>
+            </Col>
+          </Row>
+        </Card>
       </Form>
     </>
   );

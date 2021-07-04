@@ -1,18 +1,24 @@
-
 type Answer = {
-    answerStr : string,
-    answerVal : string[]
-}
+  answerStr: string;
+  answerVal: string[];
+};
 
 type TestQuestion = {
-    image: string,
-    question : string,
-    answerArr : Answer[],
-}
+  image: string;
+  question: string;
+  answerArr: Answer[];
+};
+export type suiteInfo = {
+  image: string;
+  title: string;
+  question: string;
+  answer: string[];
+};
 
 export type TestProps = {
-    suiteArr: TestQuestion[];
-  };
-export type TestPropsa={
-    b:string;
-}
+  suiteInfo: suiteInfo;
+  suiteArr: TestQuestion[];
+};
+export type TestPropsa = {
+  b: string;
+};

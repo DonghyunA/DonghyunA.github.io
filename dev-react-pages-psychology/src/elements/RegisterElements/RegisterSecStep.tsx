@@ -2,7 +2,7 @@ import { Form, Input, Button, Space, Col, Row } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import Avatar from "../Common/ImageUpload";
-import DynamicInput from "../Common/DynamicInput";
+import DynamicSecInput from "../Common/DynamicInput";
 
 const RegisterSecStep = () => {
   const onFinish = (values: any) => {
@@ -12,30 +12,31 @@ const RegisterSecStep = () => {
     <Form name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off">
       <Row justify="center" align="middle">
         <Col>
-          <Form.List name="detail">
-            {(fields, { add, remove }) => (
+          <Form.List name="suiteArr">
+            {(fields, questionFunc) => (
               <>
                 {fields.map(({ key, name, fieldKey, ...restField }) => (
                   <>
+                  {console.log(key, name, fieldKey, restField)}
                     <Space
                       key={key}
                       style={{ display: "flex", marginBottom: 8 }}
                       align="baseline"
                     >
-                      <Form.Item label={key + 1 + "번째 문제의 사진"}>
+                      <Form.Item {...restField} label={key + 1 + "번째 문제의 사진"} name="image" fieldKey={[fieldKey,"image"]}>
                         <Row justify="center" align="middle">
                           <Col>
                             <Avatar></Avatar>
                           </Col>
                         </Row>
                       </Form.Item>
-                      <MinusCircleOutlined onClick={() => remove(name)} />
+                      <MinusCircleOutlined onClick={() => questionFunc.remove(name)} />
                     </Space>
-                    <Form.Item label="질문" name="question">
-                      <Input type="text" required className="question" />
+                    <Form.Item {...restField} label="질문" name="question" fieldKey={[fieldKey,"question"]}>
+                      <Input type="text" required />
                     </Form.Item>
-                    <Form.Item label="답변" name="question">
-                    <DynamicInput></DynamicInput>
+                    <Form.Item {...restField} label="답변" name="answerArr" fieldKey={[fieldKey,"answer"]}>
+                      <DynamicSecInput></DynamicSecInput>
                     </Form.Item>
                     <Space
                       key={key}
@@ -68,11 +69,11 @@ const RegisterSecStep = () => {
                 <Form.Item>
                   <Button
                     type="dashed"
-                    onClick={() => add()}
+                    onClick={() => questionFunc.add()}
                     block
                     icon={<PlusOutlined />}
                   >
-                    Add field
+                    문제 추가
                   </Button>
                 </Form.Item>
               </>

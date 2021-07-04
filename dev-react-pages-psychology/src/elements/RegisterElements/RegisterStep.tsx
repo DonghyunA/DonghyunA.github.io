@@ -1,14 +1,34 @@
 import React from "react";
-import { Steps, Divider, Button } from "antd";
+import { Steps, Button } from "antd";
 import RegisterFirstStep from "./RegisterFirstStep";
 import RegisterSecStep from "./RegisterSecStep";
+import { useState } from "react";
+import { TestProps } from "../../interfaces/TestProps";
 
 const { Step } = Steps;
-
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 4 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 20 },
+  },
+};
+const formItemLayoutWithOutLabel = {
+  wrapperCol: {
+    xs: { span: 24, offset: 0 },
+    sm: { span: 20, offset: 4 },
+  },
+};
+const onFinish = (values: any) => {
+  console.log("Received values of form:", values);
+};
 const RegisterStep = (props: any) => {
   const steps = [
     {
-      content: <RegisterFirstStep functionSet={props}></RegisterFirstStep>,
+      content: <RegisterFirstStep functionSet={props.functionSet}></RegisterFirstStep>,
     },
     {
       content: <RegisterSecStep></RegisterSecStep>,
@@ -18,7 +38,7 @@ const RegisterStep = (props: any) => {
     },
   ];
   const [current, setCurrent] = React.useState(0);
-
+  
   const next = () => {
     setCurrent(current + 1);
   };
@@ -26,7 +46,6 @@ const RegisterStep = (props: any) => {
   const prev = () => {
     setCurrent(current - 1);
   };
-
   return (
     <>
       <Steps size="small" current={current}>

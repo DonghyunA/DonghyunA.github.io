@@ -3,12 +3,17 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import RegisterStep from "../RegisterElements/RegisterStep";
 import { Form } from "antd";
+import { TestProps } from "../../interfaces/TestProps";
 
 const RegisterTestContents = () => {
   const history = useHistory();
   const [testTitle, setTestTitle] = useState();
   const [question, setQuestion] = useState();
   const [answerArr, setAnswerArr] = useState();
+  const [suite, setSuite] = useState<TestProps>({
+    suiteInfo: { image: "", title: "", question: "", answer: [] },
+    suiteArr: [],
+  });
   const onChange = (event: any) => {
     console.log(event);
     const {
@@ -34,11 +39,12 @@ const RegisterTestContents = () => {
     answerArr,
     setAnswerArr,
     onChange,
+    suite,
+    setSuite,
   };
   return (
     <>
-
-        <RegisterStep functionSet={functionSet}></RegisterStep>
+      <RegisterStep functionSet={functionSet}></RegisterStep>
     </>
   );
 };
