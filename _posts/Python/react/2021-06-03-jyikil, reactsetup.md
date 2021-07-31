@@ -74,9 +74,9 @@ react 페이지를 배포하기 위해서는 우선 빌드를 하고 빌드된 �
 ```javascript
     "predeploy": "npm run build",
     "purge": "rmdir /s /q ..\\react-pages\\static && xcopy .\\build\\* ..\\react-pages\\ /E /y",
-    "deploy": "npm run purge 
+    "deploy": "npm run purge && npm run frontmatter"
 ```
-* 하기에 있는 리눅스의 frontmatter구문을 window에서 동작할 수 있는 명령어로 수정할 수 있다면 메일로 제보 부탁드립니다.
+
 ### 6.2 운영체제가 리눅스인 경우
 ```javascript
   "predeploy": "npm run build",
