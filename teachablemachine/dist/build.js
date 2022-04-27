@@ -75,10 +75,10 @@ var Main = function () {
       div.appendChild(button);
 
       // Listen for mouse events when clicking the button
-      button.addEventListener('mousedown', function () {
+      button.addEventListener('touchstart', function () {
         return _this.training = i;
       });
-      button.addEventListener('mouseup', function () {
+      button.addEventListener('touchend', function () {
         return _this.training = -1;
       });
 
