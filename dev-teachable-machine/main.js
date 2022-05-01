@@ -16,6 +16,7 @@ import "@babel/polyfill";
 import * as mobilenetModule from '@tensorflow-models/mobilenet';
 import * as tf from '@tensorflow/tfjs';
 import * as knnClassifier from '@tensorflow-models/knn-classifier';
+// import bootstrap from 'bootstrap';
 
 // Number of classes to classify
 const NUM_CLASSES = 3;
@@ -32,6 +33,7 @@ class Main {
     this.training = -1; // -1 when no class is being trained
     this.videoPlaying = false;
     this.myStream;
+    this.captureInfo = [];
 
     // Initiate deeplearn.js math and knn classifier objects
     this.bindPage();
@@ -43,29 +45,56 @@ class Main {
 
 
     this.selectCameras = document.createElement('select');
-    this.selectCameras.addEventListener('click', () => {
+    this.selectCameras.className='form-select form-select-sm';
+    this.selectCameras.addEventListener('change', () => {
       this.getMedia(this.selectCameras.value);
     })
     // Add video element to DOM
-    document.body.appendChild(this.video);
-    document.body.appendChild(this.selectCameras);
+    // document.body.appendChild(this.video);
+    // document.body.appendChild(this.selectCameras);
+    document.getElementById('body').appendChild(this.video);
+    document.getElementById('body').appendChild(this.selectCameras);
 
     // Create training buttons and info texts    
+    const buttonTextArr= ["엄마 캡쳐", "아빠 캡쳐", "그외"]
     for (let i = 0; i < NUM_CLASSES; i++) {
       const div = document.createElement('div');
-      document.body.appendChild(div);
-      div.style.marginBottom = '10px';
+      document.getElementById('body').appendChild(div);
+      div.style.marginBottom = '0px';
+      div.style.marginTop = '10px';
 
       // Create training button
-      const button = document.createElement('button')
-      button.innerText = "Train " + i;
+      const button = document.createElement('button');
+      // button.className = 'btn btn-primary';
+      // // const button  = new bootstrap.Button(buttonEl)
+      // button.innerText = "Train " + i;
+      button.className = 'btn btn-primary position-relative';
+      button.innerText = buttonTextArr[i];
+      const counterText = document.createElement('span');
+      counterText.className = 'position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger';
+      counterText.innerText = 0;
+      button.appendChild(counterText);
       div.appendChild(button);
+      this.captureInfo.push(counterText)
 
       // Listen for mouse events when clicking the button
-      button.addEventListener('touchstart', () => this.training = i);
-      button.addEventListener('mousedown', () => this.training = i);
-      button.addEventListener('touchend', () => this.training = -1);
-      button.addEventListener('mouseup', () => this.training = -1);
+      button.addEventListener('touchstart', (e) => {
+        this.training = i;
+        e.preventDefault();
+      });
+      button.addEventListener('mousedown', (e) => {
+        this.training = i;
+        e.preventDefault();
+      });
+      button.addEventListener('touchend', (e) => {
+        this.training = -1;
+        e.preventDefault();
+      });
+      button.addEventListener('mouseup', (e) => {
+        this.training = -1
+        e.preventDefault();
+      }
+        );
 
       // Create info text
       const infoText = document.createElement('span')
@@ -200,7 +229,8 @@ class Main {
 
           // Update info text
           if (exampleCount[i] > 0) {
-            this.infoTexts[i].innerText = ` ${exampleCount[i]} examples - ${res.confidences[i] * 100}%`
+            this.captureInfo[i].innerText = exampleCount[i];
+            this.infoTexts[i].innerText = `examples - ${res.confidences[i] * 100}%`
           }
         }
       }

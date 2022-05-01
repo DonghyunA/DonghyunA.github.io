@@ -61,7 +61,7 @@ var Main = function () {
     this.video.setAttribute('playsinline', '');
 
     this.selectCameras = document.createElement('select');
-    this.selectCameras.addEventListener('click', function () {
+    this.selectCameras.addEventListener('change', function () {
       _this.getMedia(_this.selectCameras.value);
     });
     // Add video element to DOM
