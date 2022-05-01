@@ -33,6 +33,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+// import bootstrap from 'bootstrap';
+
 // Number of classes to classify
 var NUM_CLASSES = 3;
 // Webcam Image size. Must be 227. 
@@ -51,6 +53,7 @@ var Main = function () {
     this.training = -1; // -1 when no class is being trained
     this.videoPlaying = false;
     this.myStream;
+    this.captureInfo = [];
 
     // Initiate deeplearn.js math and knn classifier objects
     this.bindPage();
@@ -61,37 +64,55 @@ var Main = function () {
     this.video.setAttribute('playsinline', '');
 
     this.selectCameras = document.createElement('select');
+    this.selectCameras.className = 'form-select form-select-sm';
     this.selectCameras.addEventListener('change', function () {
       _this.getMedia(_this.selectCameras.value);
     });
     // Add video element to DOM
-    document.body.appendChild(this.video);
-    document.body.appendChild(this.selectCameras);
+    // document.body.appendChild(this.video);
+    // document.body.appendChild(this.selectCameras);
+    document.getElementById('body').appendChild(this.video);
+    document.getElementById('body').appendChild(this.selectCameras);
 
     // Create training buttons and info texts    
+    var buttonTextArr = ["엄마 캡쳐", "아빠 캡쳐", "그외"];
 
     var _loop = function _loop(i) {
       var div = document.createElement('div');
-      document.body.appendChild(div);
-      div.style.marginBottom = '10px';
+      document.getElementById('body').appendChild(div);
+      div.style.marginBottom = '0px';
+      div.style.marginTop = '10px';
 
       // Create training button
       var button = document.createElement('button');
-      button.innerText = "Train " + i;
+      // button.className = 'btn btn-primary';
+      // // const button  = new bootstrap.Button(buttonEl)
+      // button.innerText = "Train " + i;
+      button.className = 'btn btn-primary position-relative';
+      button.innerText = buttonTextArr[i];
+      var counterText = document.createElement('span');
+      counterText.className = 'position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger';
+      counterText.innerText = 0;
+      button.appendChild(counterText);
       div.appendChild(button);
+      _this.captureInfo.push(counterText);
 
       // Listen for mouse events when clicking the button
-      button.addEventListener('touchstart', function () {
-        return _this.training = i;
+      button.addEventListener('touchstart', function (e) {
+        _this.training = i;
+        e.preventDefault();
       });
-      button.addEventListener('mousedown', function () {
-        return _this.training = i;
+      button.addEventListener('mousedown', function (e) {
+        _this.training = i;
+        e.preventDefault();
       });
-      button.addEventListener('touchend', function () {
-        return _this.training = -1;
+      button.addEventListener('touchend', function (e) {
+        _this.training = -1;
+        e.preventDefault();
       });
-      button.addEventListener('mouseup', function () {
-        return _this.training = -1;
+      button.addEventListener('mouseup', function (e) {
+        _this.training = -1;
+        e.preventDefault();
       });
 
       // Create info text
@@ -304,7 +325,8 @@ var Main = function () {
 
                 // Update info text
                 if (exampleCount[i] > 0) {
-                  this.infoTexts[i].innerText = ' ' + exampleCount[i] + ' examples - ' + res.confidences[i] * 100 + '%';
+                  this.captureInfo[i].innerText = exampleCount[i];
+                  this.infoTexts[i].innerText = 'examples - ' + res.confidences[i] * 100 + '%';
                 }
               }
 
