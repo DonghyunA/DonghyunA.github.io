@@ -133,6 +133,7 @@ class Main {
       navigator.mediaDevices.getUserMedia(
         deviceId ? cameraConstraints : initialConstrains
       ).then((stream) => {
+        stream.
         this.video.srcObject = stream;
         this.myStream = stream;
         this.video.width = IMAGE_SIZE;
