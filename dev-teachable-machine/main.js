@@ -133,7 +133,6 @@ class Main {
       navigator.mediaDevices.getUserMedia(
         deviceId ? cameraConstraints : initialConstrains
       ).then((stream) => {
-        stream.
         this.video.srcObject = stream;
         this.myStream = stream;
         this.video.width = IMAGE_SIZE;
@@ -224,14 +223,16 @@ class Main {
           // Make the predicted class bold
           if (res.classIndex == i) {
             this.infoTexts[i].style.fontWeight = 'bold';
+            this.infoTexts[i].style.fontSize = '2rem';
           } else {
             this.infoTexts[i].style.fontWeight = 'normal';
+            this.infoTexts[i].style.fontSize = '1rem';
           }
 
           // Update info text
           if (exampleCount[i] > 0) {
             this.captureInfo[i].innerText = exampleCount[i];
-            this.infoTexts[i].innerText = `examples - ${res.confidences[i] * 100}%`
+            this.infoTexts[i].innerText = `  ${Math.round(res.confidences[i].toFixed(2) * 100)}% 닮음`
           }
         }
       }
