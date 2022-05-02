@@ -16,6 +16,8 @@ import "@babel/polyfill";
 import * as mobilenetModule from '@tensorflow-models/mobilenet';
 import * as tf from '@tensorflow/tfjs';
 import * as knnClassifier from '@tensorflow-models/knn-classifier';
+// import "bootstrap-icons/font/bootstrap-icons.css"
+// import "bootstrap-icons/font/bootstrap-icons"
 // import bootstrap from 'bootstrap';
 
 // Number of classes to classify
@@ -35,6 +37,8 @@ class Main {
     this.myStream;
     this.captureInfo = [];
 
+    this.trainingCountBtnDiv = document.createElement('div');
+
     // Initiate deeplearn.js math and knn classifier objects
     this.bindPage();
 
@@ -45,7 +49,7 @@ class Main {
 
 
     this.selectCameras = document.createElement('select');
-    this.selectCameras.className='form-select form-select-sm';
+    this.selectCameras.className = 'form-select form-select-sm';
     this.selectCameras.addEventListener('change', () => {
       this.getMedia(this.selectCameras.value);
     })
@@ -56,12 +60,51 @@ class Main {
     document.getElementById('body').appendChild(this.selectCameras);
 
     // Create training buttons and info texts    
-    const buttonTextArr= ["엄마 캡쳐", "아빠 캡쳐", "그외"]
+    const numberOfTrainingSet = 3;
+    this.drawCountButton();
+    this.drawTrainingButton();
+
+    this.getMedia();
+    // Setup webcam
+    // navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    //   .then((stream) => {
+    //     this.video.srcObject = stream;
+    //     this.myStream = stream;
+    //     this.video.width = IMAGE_SIZE;
+    //     this.video.height = IMAGE_SIZE;
+
+    //     this.video.addEventListener('playing', () => this.videoPlaying = true);
+    //     this.video.addEventListener('paused', () => this.videoPlaying = false);
+
+    //   }).then(() => {
+    //     this.getCameras();
+    //   })
+
+  }
+  drawCountButton() {
+    document.getElementById('body').appendChild(this.trainingCountBtnDiv);
+    this.trainingCountBtnDiv.style.marginBottom = '0px';
+    this.trainingCountBtnDiv.style.marginTop = '10px';
+    const plusBtn = document.createElement('i');
+    plusBtn.className = "bi bi-plus";
+    plusBtn.style = "font-size: 2rem; color: cornflowerblue;"
+    // const plusIcon = document.createElement('i');
+    // plusIcon.className = "bi bi-plus";
+    // plusBtn.appendChild(plusIcon)
+    this.trainingCountBtnDiv.appendChild(plusBtn);
+
+    // const plusBtn = document.createElement('i');
+    // plusBtn.className = "bi bi-plus";
+    // plusBtn.style = "font-size: 2rem; color: cornflowerblue;"
+
+  }
+  drawTrainingButton() {
+    const buttonTextArr = ["엄마 캡쳐", "아빠 캡쳐", "그외"]
     for (let i = 0; i < NUM_CLASSES; i++) {
-      const div = document.createElement('div');
-      document.getElementById('body').appendChild(div);
-      div.style.marginBottom = '0px';
-      div.style.marginTop = '10px';
+      const trainingBtnDiv = document.createElement('div');
+      document.getElementById('body').appendChild(trainingBtnDiv);
+      trainingBtnDiv.style.marginBottom = '0px';
+      trainingBtnDiv.style.marginTop = '10px';
 
       // Create training button
       const button = document.createElement('button');
@@ -74,7 +117,7 @@ class Main {
       counterText.className = 'position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger';
       counterText.innerText = 0;
       button.appendChild(counterText);
-      div.appendChild(button);
+      trainingBtnDiv.appendChild(button);
       this.captureInfo.push(counterText)
 
       // Listen for mouse events when clicking the button
@@ -94,31 +137,14 @@ class Main {
         this.training = -1
         e.preventDefault();
       }
-        );
+      );
 
       // Create info text
       const infoText = document.createElement('span')
       infoText.innerText = " No examples added";
-      div.appendChild(infoText);
+      trainingBtnDiv.appendChild(infoText);
       this.infoTexts.push(infoText);
     }
-
-    this.getMedia();
-    // Setup webcam
-    // navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-    //   .then((stream) => {
-    //     this.video.srcObject = stream;
-    //     this.myStream = stream;
-    //     this.video.width = IMAGE_SIZE;
-    //     this.video.height = IMAGE_SIZE;
-
-    //     this.video.addEventListener('playing', () => this.videoPlaying = true);
-    //     this.video.addEventListener('paused', () => this.videoPlaying = false);
-
-    //   }).then(() => {
-    //     this.getCameras();
-    //   })
-
   }
   getMedia(deviceId) {
     const initialConstrains = {
