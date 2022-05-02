@@ -37,7 +37,9 @@ class Main {
     this.myStream;
     this.captureInfo = [];
 
-    this.trainingCountBtnDiv = document.createElement('div');
+    this.trainingCountBtnDiv = document.getElementById('bodyCount')
+    this.trainingCntText = document.createElement('div');
+    this.trainingCnt = 3;
 
     // Initiate deeplearn.js math and knn classifier objects
     this.bindPage();
@@ -56,8 +58,8 @@ class Main {
     // Add video element to DOM
     // document.body.appendChild(this.video);
     // document.body.appendChild(this.selectCameras);
-    document.getElementById('body').appendChild(this.video);
-    document.getElementById('body').appendChild(this.selectCameras);
+    document.getElementById('bodyVideo').appendChild(this.video);
+    document.getElementById('bodySelect').appendChild(this.selectCameras);
 
     // Create training buttons and info texts    
     const numberOfTrainingSet = 3;
@@ -82,27 +84,41 @@ class Main {
 
   }
   drawCountButton() {
-    document.getElementById('body').appendChild(this.trainingCountBtnDiv);
+    // document.getElementById('bodyCount').appendChild(this.trainingCountBtnDiv);
     this.trainingCountBtnDiv.style.marginBottom = '0px';
     this.trainingCountBtnDiv.style.marginTop = '10px';
+    const minusBtn = document.createElement('i');
+    minusBtn.className = "bi bi-dash";
+    minusBtn.style = "font-size: 2rem; color: black;"
+    minusBtn.addEventListener("click", () => {
+      if (this.trainingCnt >= 1) {
+        this.trainingCnt -= 1;
+        this.trainingCntText.innerText = this.trainingCnt;
+      }
+    })
+    this.trainingCountBtnDiv.appendChild(minusBtn);
+
+    this.trainingCntText.innerText = this.trainingCnt;
+    this.trainingCntText.className = "col"
+    this.trainingCountBtnDiv.appendChild(this.trainingCntText);
+
     const plusBtn = document.createElement('i');
     plusBtn.className = "bi bi-plus";
     plusBtn.style = "font-size: 2rem; color: cornflowerblue;"
-    // const plusIcon = document.createElement('i');
-    // plusIcon.className = "bi bi-plus";
-    // plusBtn.appendChild(plusIcon)
+    plusBtn.addEventListener("click", () => {
+      this.trainingCnt += 1;
+      this.trainingCntText.innerText = this.trainingCnt;
+
+    })
     this.trainingCountBtnDiv.appendChild(plusBtn);
 
-    // const plusBtn = document.createElement('i');
-    // plusBtn.className = "bi bi-plus";
-    // plusBtn.style = "font-size: 2rem; color: cornflowerblue;"
 
   }
   drawTrainingButton() {
     const buttonTextArr = ["엄마 캡쳐", "아빠 캡쳐", "그외"]
     for (let i = 0; i < NUM_CLASSES; i++) {
       const trainingBtnDiv = document.createElement('div');
-      document.getElementById('body').appendChild(trainingBtnDiv);
+      document.getElementById('bodyTraining').appendChild(trainingBtnDiv);
       trainingBtnDiv.style.marginBottom = '0px';
       trainingBtnDiv.style.marginTop = '10px';
 
