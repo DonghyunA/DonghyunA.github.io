@@ -88,26 +88,29 @@ class Main {
     this.trainingCountBtnDiv.style.marginBottom = '0px';
     this.trainingCountBtnDiv.style.marginTop = '10px';
     const minusBtn = document.createElement('i');
-    minusBtn.className = "bi bi-dash";
-    minusBtn.style = "font-size: 2rem; color: black;"
+    minusBtn.className = "bi bi-dash col-auto align-self-center";
+    minusBtn.style = "font-size: 2rem; color: cornflowerblue;"
     minusBtn.addEventListener("click", () => {
       if (this.trainingCnt >= 1) {
         this.trainingCnt -= 1;
         this.trainingCntText.innerText = this.trainingCnt;
+
+        e.preventDefault();
       }
     })
     this.trainingCountBtnDiv.appendChild(minusBtn);
 
     this.trainingCntText.innerText = this.trainingCnt;
-    this.trainingCntText.className = "col"
+    this.trainingCntText.className = "col-auto align-self-center"
     this.trainingCountBtnDiv.appendChild(this.trainingCntText);
 
     const plusBtn = document.createElement('i');
-    plusBtn.className = "bi bi-plus";
+    plusBtn.className = "bi bi-plus col-auto align-self-center";
     plusBtn.style = "font-size: 2rem; color: cornflowerblue;"
     plusBtn.addEventListener("click", () => {
       this.trainingCnt += 1;
       this.trainingCntText.innerText = this.trainingCnt;
+      e.preventDefault();
 
     })
     this.trainingCountBtnDiv.appendChild(plusBtn);
