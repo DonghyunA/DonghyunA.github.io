@@ -10,13 +10,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dist/icon.css">
     <style>
         * {
             font-family: 'Do Hyeon', sans-serif;
         }
 
         #container {
-            padding: 15px;
+            padding: 35px;
         }
 
         video {
@@ -27,7 +28,7 @@
             /* Firefox */
         }
     </style>
-    <title>Teachable Machine Boilerplate</title>
+    <title>유전자 몰빵 테스트</title>
 
     <script src="dist/build.js"></script>
 </head>
@@ -38,25 +39,27 @@
         crossorigin="anonymous"></script>
     <div id="container">
         <div class="row justify-content-center">
-            <!-- <div class="col align-self-start">
-                <div id="title"><h1>나 누구 닮았음?</h1></div>
-            </div> -->
             <div class="col-auto align-self-center">
                 <div id="title">
-                    <h1>나 누구 닮았음?</h1>
+                    <h1 class="border-bottom border-2">유전자 몰빵 테스트</h1>
                 </div>
             </div>
-
-            <!-- <div class="col align-self-end">
-                <div id="title"><h1>나 누구 닮았음?</h1></div>
-            </div> -->
         </div>
-
+        <div class="row justify-content-center">
+            얘는 누굴 닮았데? 를 종결시킬 AI가 왔다.<br />
+            엄마와 아빠의 얼굴을 학습시켜 자녀가 누구를 더 닮았는지 AI가 알려드립니다.<br /><br />
+            ★학습방법 : 학습시킬 대상을 화면에 보이게 한 뒤 버튼을 길게 눌러주세요. <br />
+            카운팅 횟수 만큼 학습됩니다.<br />
+            다양한 각도로 학습시켜주세요. <br />
+            카운팅이 많을 수록 더욱 정교한 결과가 나타납니다.<br />
+            각 학습대상의 촬영횟수를 비슷하게 해주세요.<br />
+            학습을 모두 시킨뒤 대상을 카메라로 찍으면 퍼센트가 나옵니다.<br />
+        </div>
         <div id="body" class="row">
             <div id="bodyCol1" class="col">
                 <div id="bodyVideo" class="row"></div>
                 <div id="bodySelect" class="row"></div>
-                <div id="bodyCount" class="row"></div>
+                <div id="bodyCount" class="row justify-content-center"></div>
                 <div id="bodyTraining" class="row"></div>
 
             </div>
