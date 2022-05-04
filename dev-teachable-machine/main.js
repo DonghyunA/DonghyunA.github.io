@@ -90,11 +90,13 @@ class Main {
     const minusBtn = document.createElement('i');
     minusBtn.className = "bi bi-dash col-auto align-self-center";
     minusBtn.style = "font-size: 2rem; color: cornflowerblue;"
-    minusBtn.addEventListener("click", () => {
-      if (this.trainingCnt >= 1) {
+    minusBtn.addEventListener("click", (e) => {
+      if (this.trainingCnt > 2) {
         this.trainingCnt -= 1;
         this.trainingCntText.innerText = this.trainingCnt;
-
+        this.removeTrainingButton();
+        this.drawTrainingButton();
+        this.knn.clearAllClasses();
         e.preventDefault();
       }
     })
@@ -107,9 +109,12 @@ class Main {
     const plusBtn = document.createElement('i');
     plusBtn.className = "bi bi-plus col-auto align-self-center";
     plusBtn.style = "font-size: 2rem; color: cornflowerblue;"
-    plusBtn.addEventListener("click", () => {
+    plusBtn.addEventListener("click", (e) => {
       this.trainingCnt += 1;
       this.trainingCntText.innerText = this.trainingCnt;
+      this.removeTrainingButton();
+      this.drawTrainingButton();
+      this.knn.clearAllClasses();
       e.preventDefault();
 
     })
@@ -118,8 +123,8 @@ class Main {
 
   }
   drawTrainingButton() {
-    const buttonTextArr = ["엄마 캡쳐", "아빠 캡쳐", "그외"]
-    for (let i = 0; i < NUM_CLASSES; i++) {
+    const buttonTextArr = ["엄마", "아빠", "할머니", "할아버지", "할머니", "할아버지", "고모", "고모부", "이모", "이모부"]
+    for (let i = 0; i < this.trainingCnt; i++) {
       const trainingBtnDiv = document.createElement('div');
       document.getElementById('bodyTraining').appendChild(trainingBtnDiv);
       trainingBtnDiv.style.marginBottom = '0px';
@@ -164,6 +169,16 @@ class Main {
       trainingBtnDiv.appendChild(infoText);
       this.infoTexts.push(infoText);
     }
+  }
+  removeTrainingButton() {
+    let e = document.getElementById('bodyTraining');
+    let child = document.getElementById('bodyTraining').firstElementChild;
+    while (child) {
+      e.removeChild(child);
+      child = e.firstElementChild;
+    }
+    this.infoTexts.length = 0;
+    this.captureInfo.length = 0;
   }
   getMedia(deviceId) {
     const initialConstrains = {
@@ -232,6 +247,7 @@ class Main {
   }
 
   stop() {
+    console.log("stop");
     this.video.pause();
     cancelAnimationFrame(this.timer);
   }
@@ -260,7 +276,7 @@ class Main {
         logits = infer();
         const res = await this.knn.predictClass(logits, TOPK);
 
-        for (let i = 0; i < NUM_CLASSES; i++) {
+        for (let i = 0; i < this.trainingCnt; i++) {
 
           // The number of examples for each class
           const exampleCount = this.knn.getClassExampleCount();
@@ -273,7 +289,7 @@ class Main {
             this.infoTexts[i].style.fontWeight = 'normal';
             this.infoTexts[i].style.fontSize = '1rem';
           }
-
+          console.log("cnt : " + this.trainingCnt + "  class : " + numClasses);
           // Update info text
           if (exampleCount[i] > 0) {
             this.captureInfo[i].innerText = exampleCount[i];
