@@ -20,8 +20,7 @@ import * as knnClassifier from '@tensorflow-models/knn-classifier';
 // import "bootstrap-icons/font/bootstrap-icons"
 // import bootstrap from 'bootstrap';
 
-// Number of classes to classify
-const NUM_CLASSES = 3;
+
 // Webcam Image size. Must be 227. 
 const IMAGE_SIZE = 227;
 // K value for KNN
@@ -39,7 +38,7 @@ class Main {
 
     this.trainingCountBtnDiv = document.getElementById('bodyCount')
     this.trainingCntText = document.createElement('div');
-    this.trainingCnt = 3;
+    this.trainingCnt = 2;
 
     // Initiate deeplearn.js math and knn classifier objects
     this.bindPage();
@@ -136,7 +135,12 @@ class Main {
       // // const button  = new bootstrap.Button(buttonEl)
       // button.innerText = "Train " + i;
       button.className = 'btn btn-primary position-relative';
-      button.innerText = buttonTextArr[i];
+      if (i>=buttonTextArr.length){
+        button.innerText = `삼촌 ${i-buttonTextArr.length + 1}`;
+      }
+      else{
+        button.innerText = buttonTextArr[i];
+      }
       const counterText = document.createElement('span');
       counterText.className = 'position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger';
       counterText.innerText = 0;
@@ -289,7 +293,7 @@ class Main {
             this.infoTexts[i].style.fontWeight = 'normal';
             this.infoTexts[i].style.fontSize = '1rem';
           }
-          console.log("cnt : " + this.trainingCnt + "  class : " + numClasses);
+          // console.log("cnt : " + this.trainingCnt + "  class : " + numClasses);
           // Update info text
           if (exampleCount[i] > 0) {
             this.captureInfo[i].innerText = exampleCount[i];
